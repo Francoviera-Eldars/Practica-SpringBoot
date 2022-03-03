@@ -27,9 +27,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/friends")
 public class InicioController {
 
-	@Autowired
-	//private FriendsService friendsService;
-
 	@GetMapping("/")
 	public String inicio(Model model) {
 		Persona p1= new Persona("Franco", "viera", "viera@gmail.com", 01111111111);
