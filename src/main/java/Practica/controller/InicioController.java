@@ -1,45 +1,35 @@
 package Practica.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import Practica.domain.Persona;
+import Practica.repository.PersonaDao;
 
 import org.springframework.web.bind.annotation.*;
 
 
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST, RequestMethod.DELETE})
 
-@RestController
-@RequestMapping("/friends")
+@Controller
+//@RequestMapping("/friends")
 public class InicioController {
+	
+	@Autowired
+	private PersonaDao personaDao;
 
-	@GetMapping("/")
-	public String inicio(Model model) {
-		Persona p1= new Persona("Franco", "viera", "viera@gmail.com", 01111111111);
-		Persona p2= new Persona("2", "2", "2@gmail.com", 022222222222);
-		Persona p3= new Persona("3", "3", "3@gmail.com", 033333333333);
+	@GetMapping("")
+	public String inicio(Model model) {	
+		List<Persona> personas = new ArrayList<Persona>();
 		
-		List personas = new ArrayList<>();
-		
-		
-		personas.add(p1);
-		personas.add(p2);
-		personas.add(p3);
-		
+		personas.addAll((Collection<? extends Persona>) this.personaDao.findAll());
 		model.addAttribute("personas", personas);
 		
 		return "index";
