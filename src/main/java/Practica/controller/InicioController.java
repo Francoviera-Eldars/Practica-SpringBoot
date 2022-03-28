@@ -29,8 +29,7 @@ public class InicioController {
 	public String inicio(Model model) {	
 		List<Persona> personas = new ArrayList<Persona>();
 		
-		personas.addAll((Collection<? extends Persona>) this.personaDao.findAll());
-		model.addAttribute("personas", personas);
+		System.out.println(this.personaDao.findAll());
 		
 		return "index";
 	}

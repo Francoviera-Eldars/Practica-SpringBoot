@@ -18,10 +18,10 @@
 	    	<th>Numero</th>
 	    </tr>
 	    <tr th:each="persona : ${personas}">
-	   		<td th:text="${Persona.nombre}"></td>
-	   		<td th:text="${Persona.apellido}"></td>
-	   		<td th:text="${Persona.email}"></td>
-	   		<td th:text="${Persona.numero}"></td>
+	   		<td><p th:text="${persona}"></p></td>
+	   		<td><p th:text="${persona.apellido}"></p></td>
+	   		<td><p th:text="${persona.email}"></p></td>
+	   		<td><p th:text="${persona.numero}"></p></td>
 	    </tr>
     </table>
 </body>

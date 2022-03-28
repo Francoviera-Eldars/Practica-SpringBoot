@@ -2,23 +2,37 @@ package Practica.domain;
 
 import java.io.Serializable;
 
-import org.hibernate.annotations.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+import javax.persistence.Table;
 import org.springframework.data.annotation.Id;
 
 import lombok.Data;
 
-@Data
-@org.hibernate.annotations.Entity
-public class Persona implements Serializable {
+@Entity
+@Table(name="Persona")
+public class Persona {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	//@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id_persona")
+	private Integer id;
+	
+	@Column(name="nombre")
 	private String nombre;
+	
+	@Column(name="apellido")
 	private String apellido;
+	
+	@Column(name="email")
 	private String email;
+	
+	@Column(name="numero")
 	private int numero;
 	
 
@@ -29,23 +43,6 @@ public class Persona implements Serializable {
 		this.email = email;
 		this.numero = numero;
 	}
-	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-	
 	
 	
 }
